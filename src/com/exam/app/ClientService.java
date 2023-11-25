@@ -126,7 +126,14 @@ public class ClientService implements Service {
 
     @Override
     public void SearchByID() {
-
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter client ID to find client: ");
+        String idInp = Validation.validateData(scanner.nextLine(), new Validation.validateID());
+        if (clients.containsKey(Long.parseLong(idInp))) {
+            System.out.printf(clients.get(Long.parseLong(idInp)).info());
+        } else {
+            System.out.println("No client with this ID");
+        }
     }
 
     @Override
