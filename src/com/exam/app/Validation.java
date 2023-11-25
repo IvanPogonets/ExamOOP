@@ -11,6 +11,7 @@ public class Validation {
                 return input;
             }
             dataValidator.printError();
+            //asking user to input data again if it is incorrect
             input = scanner.nextLine();
         }
     }
@@ -41,6 +42,7 @@ public class Validation {
         @Override
         public boolean dataIsValid(String input) {
             try {
+                //checking if we have such industry
                Industry industry = Industry.valueOf(input.toUpperCase());
                 return true;
             } catch (IllegalArgumentException e) {
@@ -58,7 +60,7 @@ public class Validation {
     public static class validateRevenue implements Validator {
 
         @Override
-        public boolean dataIsValid(String input) {
+        public boolean dataIsValid(String input) { //checking if revenue is a number
             return input.matches("\\d+\\.\\d{0,2}")
                     && Double.parseDouble(input) > 0
                     && Double.parseDouble(input) < 10000000;

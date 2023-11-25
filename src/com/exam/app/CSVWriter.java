@@ -10,6 +10,7 @@ public class CSVWriter implements Writer{
         String path = "file.csv";
         try (
                 BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+           // write head
             writer.write("Id,Name,Industry,ContactPerson,Revenue");
             writer.newLine();
             for (Client value : ClientService.getClients().values()) {

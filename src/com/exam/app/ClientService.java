@@ -30,6 +30,7 @@ public class ClientService implements Service {
         while (true) {
             String[] input = scanner.nextLine().trim().split(",");
             if (input.length == 4) {
+                //get fields from input and validate them
                 String name = Validation.validateData(input[0].trim(), new Validation.validateName());
                 Industry industry = Industry.valueOf(Validation.validateData(input[1].trim().toUpperCase(), new Validation.validateIndustry()));
                 String contactPerson = Validation.validateData(input[2].trim(), new Validation.validateName());
@@ -54,7 +55,7 @@ public class ClientService implements Service {
             Client client = getClients().get(id);
             System.out.println("Enter new name or press enter key to skip");
             String inputName = scanner.nextLine();
-            if (!inputName.isEmpty()) {
+            if (!inputName.isEmpty()) { //to skip empty fields, which we don't want to edit
                 String name = Validation.validateData(inputName, new Validation.validateName());
                 client.setName(name);
             }
@@ -87,6 +88,7 @@ public class ClientService implements Service {
     public void RemoveClient() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter ID of client");
+        //valida te ID
         String idInp = Validation.validateData(scanner.nextLine().trim(), new Validation.validateID());
         if (getClients().isEmpty()) {
             System.out.println("There is no clients");
@@ -111,6 +113,7 @@ public class ClientService implements Service {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter industry from list to find clients: ");
         Validation.validateIndustry.printIndustry();
+        //new argument for use in search
         Industry industry = Industry.valueOf(Validation.validateData(scanner.nextLine().trim().toUpperCase(), new Validation.validateIndustry()));
         for (Map.Entry<Long, Client> entry : clients.entrySet()) {
             if (entry.getValue().getIndustry().equals(industry)) {
@@ -120,13 +123,13 @@ public class ClientService implements Service {
                 System.out.println("There is no such clients for these industry");
             }
         }
-
     }
 
     @Override
     public void SearchByID() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter client ID to find client: ");
+        //validating ID
         String idInp = Validation.validateData(scanner.nextLine(), new Validation.validateID());
         if (clients.containsKey(Long.parseLong(idInp))) {
             System.out.printf(clients.get(Long.parseLong(idInp)).info());
@@ -140,15 +143,16 @@ public class ClientService implements Service {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter client's name to find client: ");
         String name = Validation.validateData(scanner.nextLine(), new Validation.validateName());
+        //argument for checking if search result is empty
         int count = 0;
-        for (Map.Entry<Long,Client> entry : clients.entrySet()) {
+        for (Map.Entry<Long, Client> entry : clients.entrySet()) {
             if (entry.getValue().getName().contains(name)) {
                 System.out.printf(entry.getValue().info());
                 System.out.println();
                 count++;
             }
         }
-        if (count == 0){
+        if (count == 0) {
             System.out.println("There is no such name in base");
         }
     }
@@ -157,5 +161,4 @@ public class ClientService implements Service {
     public void Save() {
         fileWriter.writeData();
     }
-
 }

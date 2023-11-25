@@ -3,7 +3,7 @@ package com.exam.app;
 import java.util.HashMap;
 
 public class Client {
-    private long id;
+    private final long id;
     private String name;
     private Industry industry;
     private String contactPerson;
@@ -17,13 +17,6 @@ public class Client {
         this.revenue = Double.parseDouble(input[4]);
     }
 
-    public Client(long id, String name, Industry industry, String contactPerson, double Revenue) {
-        this.id = id;
-        this.name = name;
-        this.industry = industry;
-        this.contactPerson = contactPerson;
-        this.revenue = Revenue;
-    }
 
     public Client(String name, Industry industry, String contactPerson, double Revenue) {
         this.name = name;
@@ -38,9 +31,6 @@ public class Client {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -58,17 +48,12 @@ public class Client {
         this.industry = industry;
     }
 
-    public String getContactPerson() {
-        return contactPerson;
-    }
 
     public void setContactPerson(String contactPerson) {
         this.contactPerson = contactPerson;
     }
 
-    public double getRevenue() {
-        return revenue;
-    }
+
 
     public void setRevenue(double revenue) {
         this.revenue = revenue;
@@ -86,6 +71,7 @@ public class Client {
         return id + "," + name + "," + industry + "," + contactPerson + "," + revenue;
     }
 
+    //generate unique ID
     public long getNextID() {
         HashMap<Long, Client> clients = ClientService.getClients();
         long nextID;
