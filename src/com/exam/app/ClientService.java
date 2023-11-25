@@ -92,10 +92,10 @@ public class ClientService implements Service {
             System.out.println("There is no clients");
         } else if (getClients().containsKey(Long.parseLong(idInp))) {
             clients.remove(Long.parseLong(idInp));
+            System.out.printf("Client %s was removed%n", idInp);
         } else {
-            System.out.printf("Client with ID: %s doesn't exist", idInp);
+            System.out.printf("Client with ID: %s doesn't exist%n", idInp);
         }
-        scanner.close();
     }
 
     @Override
