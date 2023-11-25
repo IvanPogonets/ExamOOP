@@ -22,6 +22,7 @@ public class ClientManagementApp {
             String command = scanner.nextLine();
             manager.performAction(command);
             if (command.equals("9")){
+                service.Save();
                 active = false;
                 scanner.close();
             }
