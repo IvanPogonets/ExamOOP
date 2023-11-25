@@ -16,8 +16,7 @@ public class ClientService implements Service {
         this.fileReader = fileReader;
         this.fileWriter = fileWriter;
         clients = new HashMap<Long, Client>();
-//        clients = fileReader.readData();
-//        setNextID();
+        fileReader.readData();
     }
 
     public static HashMap<Long, Client> getClients() {

@@ -9,6 +9,14 @@ public class Client {
     private String contactPerson;
     private double revenue;
 
+    public Client(String[] input) {
+        this.id = Long.parseLong(input[0]);
+        this.name = input[1];
+        this.industry = Industry.valueOf(input[2].toUpperCase());
+        this.contactPerson = input[3];
+        this.revenue = Double.parseDouble(input[4]);
+    }
+
     public Client(long id, String name, Industry industry, String contactPerson, double Revenue) {
         this.id = id;
         this.name = name;
