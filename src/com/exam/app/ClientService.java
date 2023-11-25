@@ -1,11 +1,9 @@
 package com.exam.app;
 
-import javax.sound.midi.Soundbank;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static com.exam.app.Client.setNextID;
 
 public class ClientService implements Service {
     private final Reader fileReader;
@@ -34,10 +32,10 @@ public class ClientService implements Service {
             String[] input = scanner.nextLine().trim().split(",");
             if (input.length == 4) {
                 String name = Validation.validateData(input[0], new Validation.validateName());
-                Industry industry = Industry.valueOf(Validation.validateData(input[1], new Validation.validateIndustry()));
+//                Industry industry = Industry.valueOf(Validation.validateData(input[1], new Validation.validateIndustry()));
                 String contactPerson = Validation.validateData(input[2], new Validation.validateName());
                 double revenue = Double.parseDouble(Validation.validateData(input[3], new Validation.validateRevenue()));
-                Client client = new Client(name, industry, contactPerson, revenue);
+//                Client client = new Client(name, industry, contactPerson, revenue);
                 break;
             } else
                 System.out.println("Check if data is valid and separated by commas, then enter again");

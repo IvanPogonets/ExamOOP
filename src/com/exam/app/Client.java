@@ -1,7 +1,8 @@
 package com.exam.app;
 
+import java.util.HashMap;
+
 public class Client {
-    private static long nextID = 0;
     private long id;
     private String name;
     private Industry industry;
@@ -15,12 +16,13 @@ public class Client {
         this.contactPerson = contactPerson;
         this.revenue = Revenue;
     }
+
     public Client(String name, Industry industry, String contactPerson, double Revenue) {
         this.name = name;
         this.industry = industry;
         this.contactPerson = contactPerson;
         this.revenue = Revenue;
-        this.id = nextID++;
+        this.id = getNextID();
     }
 
 
@@ -66,23 +68,26 @@ public class Client {
 
     public String info() {
         return "ID: " + id +
-                        "%n Name: " + name +
-                        "%n Department: " + industry +
-                        "%n Contact person: " + contactPerson +
-                        "%n Salary: " + revenue;
+                "%n Name: " + name +
+                "%n Department: " + industry +
+                "%n Contact person: " + contactPerson +
+                "%n Salary: " + revenue;
     }
 
     public String toString() {
         return id + "," + name + "," + industry + "," + contactPerson + "," + revenue;
     }
 
-    public static void setNextID(){
-        if (ClientService.getClients().isEmpty()){
+    public long getNextID() {
+        HashMap<Long, Client> clients = ClientService.getClients();
+        long nextID;
+        if (clients.isEmpty()) {
             nextID = 0;
+        } else {
+            long maxID = clients.keySet().stream().max(Long::compare).orElse(0L);
+            nextID = maxID;
         }
-//        else {
-//            int maxID = ClientService.getClients().keySet().stream()
-//                    .mapToInt(Integer::parseInt).max().orElse(0);
-//        }
+
+        return nextID++;
     }
 }
