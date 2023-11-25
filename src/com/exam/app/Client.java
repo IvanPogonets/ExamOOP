@@ -1,8 +1,5 @@
 package com.exam.app;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 public class Client {
     private static long nextID = 0;
     private long id;
@@ -83,9 +80,9 @@ public class Client {
         if (ClientService.getClients().isEmpty()){
             nextID = 0;
         }
-        else {
-            int maxID = ClientService.getClients().keySet().stream()
-                    .mapToInt(Integer::parseInt).max().orElse(0);
-        }
+//        else {
+//            int maxID = ClientService.getClients().keySet().stream()
+//                    .mapToInt(Integer::parseInt).max().orElse(0);
+//        }
     }
 }

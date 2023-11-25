@@ -69,6 +69,20 @@ public class Validation {
             System.out.println("Revenue must contain a number above zero and less than 10 000 000.00");
             System.out.println("Enter revenue again");
         }
+
+    }
+
+    public static class validateID implements Validator {
+
+        @Override
+        public boolean dataIsValid(String input) {
+            return input.matches("\\d+");
+        }
+
+        @Override
+        public void printError() {
+            System.out.println("ID must contain only digits");
+        }
     }
 }
 
