@@ -7,7 +7,7 @@ public interface Service {
 
     public void EditClient();
 
-    public void RemoveClient(long id, Date date);
+    public void RemoveClient();
 
     public void ViewClients();
 

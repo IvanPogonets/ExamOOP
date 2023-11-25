@@ -85,14 +85,14 @@ public class ClientService implements Service {
     }
 
     @Override
-    public void RemoveClient(long id, Date date) {
+    public void RemoveClient() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter ID of client");
         String idInp = Validation.validateData(scanner.nextLine(), new Validation.validateID());
         if (getClients().isEmpty()) {
             System.out.println("There is no clients");
         } else if (getClients().containsKey(Long.parseLong(idInp))) {
-            clients.remove(id);
+            clients.remove(Long.parseLong(idInp));
         } else {
             System.out.printf("Client with ID: %s doesn't exist", idInp);
         }
