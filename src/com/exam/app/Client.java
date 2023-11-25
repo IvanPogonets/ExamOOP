@@ -68,10 +68,10 @@ public class Client {
 
     public String info() {
         return "ID: " + id +
-                "%n Name: " + name +
-                "%n Department: " + industry +
-                "%n Contact person: " + contactPerson +
-                "%n Salary: " + revenue;
+                " %n Name: " + name +
+                " %n Department: " + industry +
+                " %n Contact person: " + contactPerson +
+                " %n Salary: " + revenue;
     }
 
     public String toString() {

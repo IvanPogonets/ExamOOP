@@ -2,6 +2,7 @@ package com.exam.app;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -100,6 +101,10 @@ public class ClientService implements Service {
 
     @Override
     public void ViewClients() {
+        for (Map.Entry<Long, Client> entry : clients.entrySet()) {
+            System.out.printf(entry.getValue().info());
+            System.out.println();
+        }
     }
 
     @Override
