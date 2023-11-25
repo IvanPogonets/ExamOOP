@@ -137,7 +137,20 @@ public class ClientService implements Service {
 
     @Override
     public void SearchByName() {
-
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter client's name to find client: ");
+        String name = Validation.validateData(scanner.nextLine(), new Validation.validateName());
+        int count = 0;
+        for (Map.Entry<Long,Client> entry : clients.entrySet()) {
+            if (entry.getValue().getName().contains(name)) {
+                System.out.printf(entry.getValue().info());
+                System.out.println();
+                count++;
+            }
+        }
+        if (count == 0){
+            System.out.println("There is no such name in base");
+        }
     }
 
     @Override
