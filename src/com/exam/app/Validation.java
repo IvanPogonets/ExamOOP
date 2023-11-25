@@ -41,11 +41,11 @@ public class Validation {
         @Override
         public boolean dataIsValid(String input) {
             try {
-                Industry industry = Industry.valueOf(input.toUpperCase());
+               Industry industry = Industry.valueOf(input.toUpperCase());
                 return true;
             } catch (IllegalArgumentException e) {
+                return false;
             }
-            return false;
         }
 
         @Override

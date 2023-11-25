@@ -11,7 +11,6 @@ public class ClientService implements Service {
     private static HashMap<Long, Client> clients;
 
 
-
     public ClientService(Reader fileReader, Writer fileWriter) {
         this.fileReader = fileReader;
         this.fileWriter = fileWriter;
@@ -31,11 +30,12 @@ public class ClientService implements Service {
         while (true) {
             String[] input = scanner.nextLine().trim().split(",");
             if (input.length == 4) {
-                String name = Validation.validateData(input[0], new Validation.validateName());
-                Industry industry = Industry.valueOf(Validation.validateData(input[1].toUpperCase(), new Validation.validateIndustry()));
-                String contactPerson = Validation.validateData(input[2], new Validation.validateName());
-                double revenue = Double.parseDouble(Validation.validateData(input[3], new Validation.validateRevenue()));
-//                Client client = new Client(name, industry, contactPerson, revenue);
+                String name = Validation.validateData(input[0].trim(), new Validation.validateName());
+                Industry industry = Industry.valueOf(Validation.validateData(input[1].trim().toUpperCase(), new Validation.validateIndustry()));
+                String contactPerson = Validation.validateData(input[2].trim(), new Validation.validateName());
+                double revenue = Double.parseDouble(Validation.validateData(input[3].trim(), new Validation.validateRevenue()));
+                Client client = new Client(name, industry, contactPerson, revenue);
+                clients.put(client.getId(), client);
                 break;
             } else
                 System.out.println("Check if data is valid and separated by commas, then enter again");
@@ -46,33 +46,60 @@ public class ClientService implements Service {
     public void EditClient() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter ID of client");
-        String Id = Validation.validateData(scanner.nextLine(), new Validation.validateID());
-       if (getClients().isEmpty()){
-           System.out.println("There is no clients");
-       }
-        else if (getClients().containsKey(Long.parseLong(Id))) {
+        String idInp = Validation.validateData(scanner.nextLine(), new Validation.validateID());
+        if (getClients().isEmpty()) {
+            System.out.println("There is no clients");
+        } else if (getClients().containsKey(Long.parseLong(idInp))) {
+            long id = Long.parseLong(idInp);
+            Client client = getClients().get(id);
             System.out.println("Enter new name or press enter key to skip");
-            String name = Validation.validateData(scanner.nextLine(), new Validation.validateName());
+            String inputName = scanner.nextLine();
+            if (!inputName.isEmpty()) {
+                String name = Validation.validateData(inputName, new Validation.validateName());
+                client.setName(name);
+            }
             System.out.println("Enter new industry from list or press enter key to skip");
             Validation.validateIndustry.printIndustry();
-            Industry industry = Industry.valueOf(Validation.validateData(scanner.nextLine(), new Validation.validateIndustry()));
+            String inputIndustry = scanner.nextLine();
+            if (!inputIndustry.isEmpty()) {
+                Industry industry = Industry.valueOf(Validation.validateData(scanner.nextLine(), new Validation.validateIndustry()));
+                client.setIndustry(industry);
+            }
             System.out.println("Enter new contact person or press enter key to skip");
-            String contactPerson = Validation.validateData(scanner.nextLine(), new Validation.validateName());
-            double revenue = Double.parseDouble(Validation.validateData(scanner.nextLine(), new Validation.validateRevenue()));
-            Client client = new Client(name, industry, contactPerson, revenue);
+            String inputContactPerson = scanner.nextLine();
+            if (!inputContactPerson.isEmpty()) {
+                String contactPerson = Validation.validateData(scanner.nextLine(), new Validation.validateName());
+                client.setContactPerson(contactPerson);
+            }
+            System.out.println("Enter new contact person or press enter key to skip");
+            String inputRevenue = scanner.nextLine();
+            if (!inputRevenue.isEmpty()) {
+                double revenue = Double.parseDouble(Validation.validateData(scanner.nextLine(), new Validation.validateRevenue()));
+                client.setRevenue(revenue);
+            }
+        } else {
+            System.out.printf("Client with ID: %s doesn't exist", idInp);
         }
-        else
-            System.out.printf("Client with ID: %s doesn't exist", Id);
+        scanner.close();
     }
 
     @Override
     public void RemoveClient(long id, Date date) {
-
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter ID of client");
+        String idInp = Validation.validateData(scanner.nextLine(), new Validation.validateID());
+        if (getClients().isEmpty()) {
+            System.out.println("There is no clients");
+        } else if (getClients().containsKey(Long.parseLong(idInp))) {
+            clients.remove(id);
+        } else {
+            System.out.printf("Client with ID: %s doesn't exist", idInp);
+        }
+        scanner.close();
     }
 
     @Override
     public void ViewClients() {
-
     }
 
     @Override
