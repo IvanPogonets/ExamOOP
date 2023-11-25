@@ -32,7 +32,7 @@ public class ClientService implements Service {
             String[] input = scanner.nextLine().trim().split(",");
             if (input.length == 4) {
                 String name = Validation.validateData(input[0], new Validation.validateName());
-//                Industry industry = Industry.valueOf(Validation.validateData(input[1], new Validation.validateIndustry()));
+                Industry industry = Industry.valueOf(Validation.validateData(input[1].toUpperCase(), new Validation.validateIndustry()));
                 String contactPerson = Validation.validateData(input[2], new Validation.validateName());
                 double revenue = Double.parseDouble(Validation.validateData(input[3], new Validation.validateRevenue()));
 //                Client client = new Client(name, industry, contactPerson, revenue);

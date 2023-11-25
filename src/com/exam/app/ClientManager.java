@@ -26,9 +26,14 @@ public class ClientManager implements Manager {
         switch (command) {
             case "1":
                 service.AddClient();
+                break;
             case "2":
                 service.EditClient();
+                break;
             case "9":
+
+                break;
+
 
         }
 
