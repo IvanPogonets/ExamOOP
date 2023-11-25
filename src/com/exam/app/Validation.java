@@ -32,7 +32,7 @@ public class Validation {
 
     public static class validateIndustry implements Validator {
 
-        void printIndustry() {
+        public static void printIndustry() {
             for (Industry industry : Industry.values()) {
                 System.out.println(industry.getName());
             }

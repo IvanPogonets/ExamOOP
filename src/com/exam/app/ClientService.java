@@ -4,19 +4,24 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static com.exam.app.Client.setNextID;
+
 public class ClientService implements Service {
     private Reader fileReader;
     private Writer fileWriter;
-    private HashMap<Long, Client> clients;
+    private static HashMap<Integer, Client> clients;
+
+
 
     public ClientService(Reader fileReader, Writer fileWriter) {
         this.fileReader = fileReader;
         this.fileWriter = fileWriter;
         this.clients = new HashMap<Long, Client>();
         clients = fileReader.readData();
+        setNextID();
     }
 
-    public HashMap<Long, Client> getClients() {
+    public static HashMap<Long, Client> getClients() {
         return clients;
     }
 
@@ -40,7 +45,16 @@ public class ClientService implements Service {
 
     @Override
     public void EditClient() {
-
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter new name or press enter key to skip");
+        String name = Validation.validateData(scanner.nextLine(), new Validation.validateName());
+        System.out.println("Enter new industry from list or press enter key to skip");
+        Validation.validateIndustry.printIndustry();
+        Industry industry = Industry.valueOf(Validation.validateData(scanner.nextLine(), new Validation.validateIndustry()));
+        System.out.println("Enter new contact person or press enter key to skip");
+        String contactPerson = Validation.validateData(scanner.nextLine(), new Validation.validateName());
+        double revenue = Double.parseDouble(Validation.validateData(scanner.nextLine(), new Validation.validateRevenue()));
+        Client client = new Client(name, industry, contactPerson, revenue);
     }
 
     @Override
@@ -57,4 +71,5 @@ public class ClientService implements Service {
     public void SearchIndustry() {
 
     }
+
 }

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Client {
-    private static long nextID;
+    private static long nextID = 0;
     private long id;
     private String name;
     private Industry industry;
@@ -23,6 +23,7 @@ public class Client {
         this.industry = industry;
         this.contactPerson = contactPerson;
         this.revenue = Revenue;
+        this.id = nextID++;
     }
 
 
@@ -76,5 +77,15 @@ public class Client {
 
     public String toString() {
         return id + "," + name + "," + industry + "," + contactPerson + "," + revenue;
+    }
+
+    public static void setNextID(){
+        if (ClientService.getClients().isEmpty()){
+            nextID = 0;
+        }
+        else {
+            int maxID = ClientService.getClients().keySet().stream()
+                    .mapToInt(Integer::parseInt).max().orElse(0);
+        }
     }
 }
