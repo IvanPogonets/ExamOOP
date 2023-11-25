@@ -9,7 +9,9 @@ public interface Service {
 
     public void RemoveClient();
 
-    public void ViewClients();
-
-    public void SearchIndustry();
+     void ViewClients();
+     void SearchByIndustry();
+     void SearchByID();
+     void SearchByName();
+    void Save();
 }

@@ -12,12 +12,11 @@ public class ClientManager implements Manager {
         System.out.println("2. Update Client");
         System.out.println("3. View Clients");
         System.out.println("4. Remove Client");
-        System.out.println("5. Search Industry");
-        System.out.println("6. Search ID");
-        System.out.println("7. Search Name");
-        System.out.println("8. Remove Client");
-        System.out.println("9. Save");
-        System.out.println("0. Exit");
+        System.out.println("5. Search by industry");
+        System.out.println("6. Search by ID");
+        System.out.println("7. Search by Name");
+        System.out.println("8. Save");
+        System.out.println("9. Exit");
 
     }
 
@@ -36,11 +35,18 @@ public class ClientManager implements Manager {
             case "4":
                 service.RemoveClient();
                 break;
-            case "9":
-
+            case "5":
+                service.SearchByIndustry();
                 break;
-
-
+            case "6":
+                service.SearchByID();
+                break;
+            case "7":
+                service.SearchByName();
+                break;
+            case "8":
+                service.Save();
+                break;
         }
 
     }

@@ -18,7 +18,7 @@ public class ClientManagementApp {
             Scanner scanner = new Scanner(System.in);
             String command = scanner.nextLine();
             manager.performAction(command);
-            if (command.equals("0")){
+            if (command.equals("9")){
                 active = false;
                 scanner.close();
             }

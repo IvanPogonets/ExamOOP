@@ -108,7 +108,22 @@ public class ClientService implements Service {
     }
 
     @Override
-    public void SearchIndustry() {
+    public void SearchByIndustry() {
+        
+    }
+
+    @Override
+    public void SearchByID() {
+
+    }
+
+    @Override
+    public void SearchByName() {
+
+    }
+
+    @Override
+    public void Save() {
 
     }
 
