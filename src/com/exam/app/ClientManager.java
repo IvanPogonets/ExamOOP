@@ -47,6 +47,8 @@ public class ClientManager implements Manager {
             case "8":
                 service.Save();
                 break;
+            default:
+                System.out.println("Wrong command. Please enter command from list");
         }
 
     }

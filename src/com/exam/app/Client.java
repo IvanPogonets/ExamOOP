@@ -88,6 +88,6 @@ public class Client {
             nextID = maxID;
         }
 
-        return nextID++;
+        return ++nextID;
     }
 }

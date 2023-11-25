@@ -11,9 +11,12 @@ public class ClientManagementApp {
         Service service = new ClientService(fileReader, fileWriter);
         Manager manager = new ClientManager(service);
         System.out.println("Welcome to the Client Management System");
-        displayOptions();
         boolean active = true;
         while (active) {
+            if (ClientService.getClients().isEmpty()){
+                System.out.println("Keep in mind that there is no clients base. Please enter the new client." );
+            }
+            displayOptions();
             System.out.println("Enter the command");
             Scanner scanner = new Scanner(System.in);
             String command = scanner.nextLine();

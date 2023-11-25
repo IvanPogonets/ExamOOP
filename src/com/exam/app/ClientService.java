@@ -88,7 +88,7 @@ public class ClientService implements Service {
     public void RemoveClient() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter ID of client");
-        String idInp = Validation.validateData(scanner.nextLine(), new Validation.validateID());
+        String idInp = Validation.validateData(scanner.nextLine().trim(), new Validation.validateID());
         if (getClients().isEmpty()) {
             System.out.println("There is no clients");
         } else if (getClients().containsKey(Long.parseLong(idInp))) {
@@ -109,7 +109,19 @@ public class ClientService implements Service {
 
     @Override
     public void SearchByIndustry() {
-        
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter industry from list to find clients: ");
+        Validation.validateIndustry.printIndustry();
+        Industry industry = Industry.valueOf(Validation.validateData(scanner.nextLine().trim().toUpperCase(), new Validation.validateIndustry()));
+        for (Map.Entry<Long, Client> entry : clients.entrySet()) {
+            if (entry.getValue().getIndustry().equals(industry)) {
+                System.out.printf(entry.getValue().info());
+                System.out.println();
+            } else {
+                System.out.println("There is no such clients for these industry");
+            }
+        }
+
     }
 
     @Override
