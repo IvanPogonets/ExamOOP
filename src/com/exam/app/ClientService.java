@@ -7,16 +7,16 @@ import java.util.Scanner;
 public class ClientService implements Service {
     private Reader fileReader;
     private Writer fileWriter;
-    private HashMap<Integer, Client> clients;
+    private HashMap<Long, Client> clients;
 
     public ClientService(Reader fileReader, Writer fileWriter) {
         this.fileReader = fileReader;
         this.fileWriter = fileWriter;
-        this.clients = new HashMap<Integer, Client>();
+        this.clients = new HashMap<Long, Client>();
         clients = fileReader.readData();
     }
 
-    public HashMap<Integer, Client> getClients() {
+    public HashMap<Long, Client> getClients() {
         return clients;
     }
 
