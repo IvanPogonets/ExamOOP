@@ -143,7 +143,7 @@ public class ClientService implements Service {
 
     @Override
     public void Save() {
-
+        fileWriter.writeData();
     }
 
 }
